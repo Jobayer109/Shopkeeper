@@ -20,9 +20,11 @@ function App() {
           </div>
         </header>
         <main>
+          <h1>Featured Products</h1>
+
           <Routes>
-            <Route path="/product/:id" Component={ProductScreen}></Route>
-            <Route path="/" Component={HomeScreen} exact></Route>
+            <Route path="/product/:id" element={<ProductScreen />}></Route>
+            <Route path="/" element={<HomeScreen />} exact></Route>
           </Routes>
         </main>
         <footer className="row center">

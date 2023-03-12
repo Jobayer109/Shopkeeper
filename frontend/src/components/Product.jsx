@@ -3,7 +3,7 @@ import Rating from "./Rating";
 
 const Product = ({ product }) => {
   return (
-    <div className="card" key={product._id}>
+    <div className="card">
       <a href={`/product/${product._id}`}>
         <img className="medium" src={product.image} alt={product.name} />
       </a>
