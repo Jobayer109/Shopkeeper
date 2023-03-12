@@ -38,7 +38,9 @@ const Rating = ({ rating, numReviews }) => {
           }
         ></i>
       </span>
-      <span>{numReviews + " Reviews"}</span>
+      <span>
+        <small>{numReviews + " Reviews"}</small>
+      </span>
     </div>
   );
 };
