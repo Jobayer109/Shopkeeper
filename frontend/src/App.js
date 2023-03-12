@@ -1,3 +1,4 @@
+import Product from "./components/Product";
 import data from "./data";
 
 function App() {
@@ -19,34 +20,7 @@ function App() {
       <main>
         <div className="row center">
           {data.products.map((product) => (
-            <div className="card" key={product._id}>
-              <a href="product.html">
-                <img className="medium" src={product.image} alt={product.name} />
-              </a>
-              <div className="card_body">
-                <a href="product.html">
-                  <h2>{product.name}</h2>
-                </a>
-                <div className="rating">
-                  <span>
-                    <i className="fa fa-star"></i>
-                  </span>
-                  <span>
-                    <i className="fa fa-star"></i>
-                  </span>
-                  <span>
-                    <i className="fa fa-star"></i>
-                  </span>
-                  <span>
-                    <i className="fa fa-star"></i>
-                  </span>
-                  <span>
-                    <i className="fa fa-star"></i>
-                  </span>
-                </div>
-                <div className="price">$ {product.price}</div>
-              </div>
-            </div>
+            <Product key={product._id} product={product}></Product>
           ))}
         </div>
       </main>

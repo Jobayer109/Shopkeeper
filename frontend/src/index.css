@@ -45,11 +45,11 @@ footer {
 
 /* Common styles */
 h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   padding: 1rem 0;
 }
 h2 {
-  font-size: 2rem;
+  font-size: 1.6rem;
   padding: 1rem 0;
 }
 
@@ -124,4 +124,8 @@ img.medium {
 
 .rating span {
   margin: 0.1rem;
+}
+
+.rating span:last-child{
+  color: #404040;
 }
