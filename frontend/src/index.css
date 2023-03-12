@@ -8,6 +8,8 @@ body {
   height: 100vh;
   font-size: 1.6rem;
   font-family: Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #root{
@@ -42,11 +44,11 @@ footer {
 }
 
 /* Common styles */
-h1{
+h1 {
   font-size: 2rem;
   padding: 1rem 0;
 }
-h2{
+h2 {
   font-size: 2rem;
   padding: 1rem 0;
 }
@@ -65,9 +67,9 @@ header a {
   padding: 1rem;
 }
 
-.brand-logo{
-    padding: 1rem;
-    cursor: pointer;
+.brand-logo {
+  padding: 1rem;
+  cursor: pointer;
 }
 
 .row {
@@ -77,24 +79,24 @@ header a {
   align-items: center;
 }
 
-.row.center{
-    justify-content: center;
+.row.center {
+  justify-content: center;
 }
-.row.center span{
-    font-weight: bold;
-    color: #11b911;
+.row.center span {
+  font-weight: bold;
+  color: #11b911;
 }
 
-.product__image{
+.product__image {
   height: 830px;
   width: 680px;
 }
 
 /* Images */
-img{
-  border-radius: .5rem;
+img {
+  border-radius: 0.5rem;
 }
-img.medium{
+img.medium {
   max-width: 29rem;
   width: 100%;
   height: 250px;
@@ -102,24 +104,24 @@ img.medium{
 }
 
 /* card */
-.card{
-  border: .1rem #b9b6b6 solid;
+.card {
+  border: 0.1rem #b9b6b6 solid;
   background-color: #f0eeee;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   margin: 1rem;
 }
-.card_body{
+.card_body {
   padding: 1rem;
 }
 .card_body > * {
   margin-bottom: 0.5rem;
 }
 
-.price{
+.price {
   font-size: 2rem;
   font-weight: bold;
 }
 
-.rating span{
-  margin: .1rem;
+.rating span {
+  margin: 0.1rem;
 }
