@@ -14,8 +14,10 @@ const Product = (props) => {
           <p>{product.name}</p>
         </Link>
         <Rating rating={product.rating} numReviews={product.numReviews} />
-        <p> $ {product.price}</p>
-        <button>Add to Cart</button>
+        <div className="product__action">
+          <p> $ {product.price}</p>
+          <button>Add to Cart</button>
+        </div>
       </div>
     </div>
   );
