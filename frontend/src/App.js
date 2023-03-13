@@ -6,7 +6,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="grid-container">
-        <header className="row">
+        <header className="header__items">
           <div>
             <img
               className="brand-logo"
@@ -25,8 +25,10 @@ function App() {
             <Route path="/product/:slug" element={<ProductScreen />} />
           </Routes>
         </main>
-        <footer className="row center">
-          All Right reserved by &nbsp; <span> Shopkeeper</span>
+        <footer className="center">
+          <small>
+            All Right reserved by &nbsp; <span> Shopkeeper</span>
+          </small>
         </footer>
       </div>
     </BrowserRouter>

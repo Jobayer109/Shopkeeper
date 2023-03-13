@@ -1,6 +1,6 @@
 html {
-  /* font-size: 62.5%;
-  box-sizing: border-box; */
+  font-size: 62.5%;
+  box-sizing: border-box;
 }
 
 body {
@@ -11,9 +11,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.header__items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 header {
-  background-color: #404040;
+  background-color: #203040;
   padding: 1rem;
 }
 header a {
@@ -25,7 +30,7 @@ header a {
 header a:hover {
   color: #11b911;
 }
-main{
+main {
   padding: 1rem;
 }
 
@@ -34,20 +39,19 @@ main{
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  
 }
-.products a{
+.products a {
   text-decoration: none;
 }
-.products a:hover{
- color: #0cad0c;
+.products a:hover {
+  color: #0cad0c;
 }
 
 .product {
   border: 1px #bababa solid;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   margin: 1rem;
-
+  font-weight: 600;
 }
 
 .product img {
@@ -55,58 +59,42 @@ main{
   max-width: 280px;
 }
 
-.product__info{
+.product__info {
   padding: 1rem;
 }
 
+button {
+  background-color: #059a4f;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  background-image: linear-gradient(to bottom, #0bb05e, #0ab55f);
+}
 
-
+button:hover {
+  background-color: #059a4f;
+  background-image: none;
+  cursor: pointer;
+}
 
 #root {
-  /* height: 100%; */
-}
-
-/* Layout */
-.grid-container {
-  /* display: grid;
-  grid-template-areas:
-    "header"
-    "main"
-    "footer";
-  grid-template-columns: 1fr;
-  grid-template-rows: 5rem 1fr 5rem;
-  height: 100%; */
-}
-
-main {
-  /* grid-area: main; */
-  /* padding: 1rem; */
+  height: 100%;
 }
 
 footer {
-  /* grid-area: footer; */
-  /* background-color: #203040; */
-  /* color: #ffffff; */
+  grid-area: footer;
+  background-color: #203040;
+  color: #ffffff;
+  text-align: center;
 }
 
-.brand-logo {
-  /* padding: 1rem;
-  cursor: pointer; */
-}
-
-.row {
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center; */
-}
-
-.row.center {
-  /* justify-content: center; */
-}
-.row.center span {
-  /* font-weight: bold;
-  color: #11b911; */
+.center span {
+  font-weight: bold;
+  color: #11b911;
 }
 
 .product__image {
