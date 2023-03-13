@@ -1,5 +1,6 @@
-import { BrowserRouter } from "react-router-dom";
-import data from "./data";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import HomeScreen from "./Screens/HomeScreen";
+import ProductScreen from "./Screens/ProductScreen";
 
 function App() {
   return (
@@ -14,28 +15,15 @@ function App() {
             />
           </div>
           <div>
-            <a href="cart.html">Cart</a>
-            <a href="signIn.html">Sign In</a>
+            <Link href="cart.html">Cart</Link>
+            <Link href="signIn.html">Sign In</Link>
           </div>
         </header>
         <main>
-          <h3>Featured Products</h3>
-          <div className="products">
-            {data.products.map((product) => (
-              <div key={product._id} className="product">
-                <a href={`/product/${product.slug}`}>
-                  <img src={product.image} alt={product.name} />
-                </a>
-                <div className="product__info">
-                  <a href={`/product/${product.slug}`}>
-                    <p>{product.name}</p>
-                  </a>
-                  <p> $ {product.price}</p>
-                  <button>Add to Cart</button>
-                </div>
-              </div>
-            ))}
-          </div>
+          <Routes>
+            <Route path="/" element={<HomeScreen />} />
+            <Route path="/product/:slug" element={<ProductScreen />} />
+          </Routes>
         </main>
         <footer className="row center">
           All Right reserved by &nbsp; <span> Shopkeeper</span>
