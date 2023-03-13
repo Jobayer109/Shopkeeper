@@ -36,7 +36,7 @@ const data = {
       rating: 4.5,
       numReviews: 17,
       slug: "adidas-formal-shirt",
-      countInStock: 25,
+      countInStock: 0,
       description: "This is high quality formal shirt",
     },
     {
