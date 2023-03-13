@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useReducer } from "react";
+import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import Rating from "../components/Rating";
 
@@ -43,6 +44,9 @@ const ProductScreen = () => {
     <div>{error}</div>
   ) : (
     <div className="product__main">
+      <Helmet>
+        <title>{product.name}</title>t
+      </Helmet>
       <div>
         <img className="product__img" src={product.image} alt={product.name} />
       </div>

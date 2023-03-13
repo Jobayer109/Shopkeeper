@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useReducer } from "react";
+import { Helmet } from "react-helmet-async";
 import logger from "use-reducer-logger";
 import Product from "../components/Product";
 
@@ -37,6 +38,9 @@ const HomeScreen = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Shopkeeper</title>t
+      </Helmet>
       <h3>Featured Products</h3>
       <div className="products">
         {loading ? (
