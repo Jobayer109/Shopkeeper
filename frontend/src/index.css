@@ -17,6 +17,13 @@ body {
   justify-content: space-between;
 }
 
+.main__container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
 header {
   background-color: #203040;
   padding: 1rem;
@@ -31,7 +38,8 @@ header a:hover {
   color: #11b911;
 }
 main {
-  padding: 1rem;
+  flex: 1;
+  padding: 2rem;
 }
 
 .products {
@@ -90,6 +98,7 @@ footer {
   background-color: #203040;
   color: #ffffff;
   text-align: center;
+  padding: 1rem;
 }
 
 .center span {

@@ -5,18 +5,20 @@ import ProductScreen from "./Screens/ProductScreen";
 function App() {
   return (
     <BrowserRouter>
-      <div className="grid-container">
+      <div className="main__container">
         <header className="header__items">
           <div>
-            <img
-              className="brand-logo"
-              src="https://d9hhrg4mnvzow.cloudfront.net/try.shopkeeper.com/lp/amazon-profit-analytics-3/1i6s2e1-logo-sm_1000000000000000000028.png"
-              alt="Logo"
-            />
+            <Link to="/">
+              <img
+                className="brand-logo"
+                src="https://d9hhrg4mnvzow.cloudfront.net/try.shopkeeper.com/lp/amazon-profit-analytics-3/1i6s2e1-logo-sm_1000000000000000000028.png"
+                alt="Logo"
+              />
+            </Link>
           </div>
           <div>
-            <Link href="cart.html">Cart</Link>
-            <Link href="signIn.html">Sign In</Link>
+            <Link to="/cart">Cart</Link>
+            <Link to="/signIn">Sign In</Link>
           </div>
         </header>
         <main>
