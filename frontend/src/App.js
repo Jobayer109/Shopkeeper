@@ -1,6 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomeScreen from "./screen/HomeScreen";
-import ProductScreen from "./screen/ProductScreen";
+import { BrowserRouter } from "react-router-dom";
+import data from "./data";
 
 function App() {
   return (
@@ -20,12 +19,23 @@ function App() {
           </div>
         </header>
         <main>
-          <h1>Featured Products</h1>
-
-          <Routes>
-            <Route path="/product/:id" element={<ProductScreen />}></Route>
-            <Route path="/" element={<HomeScreen />} exact></Route>
-          </Routes>
+          <h3>Featured Products</h3>
+          <div className="products">
+            {data.products.map((product) => (
+              <div key={product._id} className="product">
+                <a href={`/product/${product.slug}`}>
+                  <img src={product.image} alt={product.name} />
+                </a>
+                <div className="product__info">
+                  <a href={`/product/${product.slug}`}>
+                    <p>{product.name}</p>
+                  </a>
+                  <p> $ {product.price}</p>
+                  <button>Add to Cart</button>
+                </div>
+              </div>
+            ))}
+          </div>
         </main>
         <footer className="row center">
           All Right reserved by &nbsp; <span> Shopkeeper</span>
