@@ -1,8 +1,14 @@
+import { useContext } from "react";
+import Badge from "react-bootstrap/Badge";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { Store } from "./components/Store";
 import HomeScreen from "./Screens/HomeScreen";
 import ProductScreen from "./Screens/ProductScreen";
 
 function App() {
+  const { state } = useContext(Store);
+  const { cart } = state;
+  console.log(cart);
   return (
     <BrowserRouter>
       <div className="main__container">
@@ -17,7 +23,14 @@ function App() {
             </Link>
           </div>
           <div>
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart">
+              Cart{" "}
+              {cart.cartItems.length > 0 && (
+                <Badge pill bg="danger">
+                  {cart.cartItems.length}
+                </Badge>
+              )}
+            </Link>
             <Link to="/signIn">Sign In</Link>
           </div>
         </header>

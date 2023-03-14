@@ -5,7 +5,7 @@ const LoadingBox = () => {
   return (
     <RotatingLines
       strokeColor="grey"
-      strokeWidth="3"
+      strokeWidth="2"
       animationDuration="0.75"
       width="50"
       visible={true}

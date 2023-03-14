@@ -1,10 +1,11 @@
 import axios from "axios";
-import { useEffect, useReducer } from "react";
+import { useContext, useEffect, useReducer } from "react";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import Rating from "../components/Rating";
+import { Store } from "../components/Store";
 import getError from "../utils";
 
 const reducer = (state, action) => {
@@ -41,6 +42,12 @@ const ProductScreen = () => {
     fetchData();
   }, [slug]);
 
+  //
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const addToCartHandler = () => {
+    ctxDispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity: 1 } });
+  };
+
   return loading ? (
     <LoadingBox className="loader" />
   ) : error ? (
@@ -73,7 +80,7 @@ const ProductScreen = () => {
             )}
           </small>{" "}
         </p>
-        {product.countInStock > 0 ? <button>Add to Cart</button> : ""}
+        {product.countInStock > 0 ? <button onClick={addToCartHandler}>Add to Cart</button> : ""}
       </div>
     </div>
   );
