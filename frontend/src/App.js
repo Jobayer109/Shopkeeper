@@ -2,6 +2,7 @@ import { useContext } from "react";
 import Badge from "react-bootstrap/Badge";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { Store } from "./components/Store";
+import CartScreen from "./Screens/CartScreen";
 import HomeScreen from "./Screens/HomeScreen";
 import ProductScreen from "./Screens/ProductScreen";
 
@@ -24,7 +25,7 @@ function App() {
           </div>
           <div>
             <Link to="/cart">
-              Cart{" "}
+              Cart
               {cart.cartItems.length > 0 && (
                 <Badge pill bg="danger">
                   {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
@@ -37,6 +38,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<HomeScreen />} />
+            <Route path="/cart" element={<CartScreen />} />
             <Route path="/product/:slug" element={<ProductScreen />} />
           </Routes>
         </main>

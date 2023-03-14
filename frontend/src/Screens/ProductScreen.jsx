@@ -2,7 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useReducer } from "react";
 import Badge from "react-bootstrap/Badge";
 import { Helmet } from "react-helmet-async";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import Rating from "../components/Rating";
@@ -23,6 +23,7 @@ const reducer = (state, action) => {
 };
 
 const ProductScreen = () => {
+  const navigate = useNavigate();
   const params = useParams();
   const { slug } = params;
   const [{ loading, error, product }, dispatch] = useReducer(reducer, {
@@ -58,6 +59,7 @@ const ProductScreen = () => {
       type: "CART_ADD_ITEM",
       payload: { ...product, quantity },
     });
+    navigate("/cart");
   };
 
   return loading ? (
@@ -81,7 +83,7 @@ const ProductScreen = () => {
         </p>
       </div>
       <div className="product__actions">
-        <h3>Price: $ {product.price}</h3>
+        <h3 style={{ fontWeight: "bold" }}>Price: $ {product.price}</h3>
         <p>
           Status:{" "}
           <small>
@@ -92,7 +94,13 @@ const ProductScreen = () => {
             )}
           </small>{" "}
         </p>
-        {product.countInStock > 0 ? <button onClick={addToCartHandler}>Add to Cart</button> : ""}
+        {product.countInStock > 0 ? (
+          <button onClick={addToCartHandler} style={{ paddingLeft: "30px", paddingRight: "30px" }}>
+            Add to Cart
+          </button>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

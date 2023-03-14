@@ -42,7 +42,7 @@ const HomeScreen = () => {
   return (
     <div>
       <Helmet>
-        <title>Shopkeeper</title>t
+        <title>Shopkeeper | Home</title>t
       </Helmet>
       <div className="products">
         {loading ? (

@@ -16,7 +16,9 @@ const Product = (props) => {
         <Rating rating={product.rating} numReviews={product.numReviews} />
         <div className="product__action">
           <p> $ {product.price}</p>
-          <button>Add to Cart</button>
+          <Link to={`/product/${product.slug}`}>
+            <button>Add to Cart</button>
+          </Link>
         </div>
       </div>
     </div>
