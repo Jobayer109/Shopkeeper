@@ -22,6 +22,16 @@ app.get("/api/products/slug/:slug", (req, res) => {
   }
 });
 
+//Get single product
+app.get("/api/products/:id", (req, res) => {
+  const product = data.products.find((x) => x._id === req.params.id);
+  if (product) {
+    res.status(200).send(product);
+  } else {
+    res.status(404).send({ message: "Product not found" });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
