@@ -138,20 +138,27 @@ footer {
 }
 
 .product__actions {
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   text-align: center;
 }
 .inStock {
   border: 1px solid #cdcdcd;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   padding: 3px;
   background-color: green;
   color: white;
 }
-.unavailable{
-   border: 1px solid #cdcdcd;
-  border-radius: .5rem;
+.unavailable {
+  border: 1px solid #cdcdcd;
+  border-radius: 0.5rem;
   padding: 3px;
   background-color: red;
   color: white;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto 0;
 }
