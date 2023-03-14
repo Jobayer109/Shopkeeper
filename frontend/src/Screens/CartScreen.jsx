@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -14,6 +15,25 @@ const CartScreen = () => {
   const {
     cart: { cartItems },
   } = state;
+
+  // Update cart item quantity
+  const updateCartHandler = async (item, quantity) => {
+    const { data } = await axios.get(`/api/products/${item._id}`);
+    if (data.countInStock < quantity) {
+      window.alert("Sorry, Products is out of stock");
+      return;
+    }
+    ctxDispatch({
+      type: "CART_ADD_ITEM",
+      payload: { ...item, quantity },
+    });
+  };
+
+  // Remove cart items
+  const removeCartItem = (item) => {
+    ctxDispatch({ type: "REMOVE_CART_ITEM", payload: item });
+  };
+
   return (
     <div className="container">
       <Helmet>
@@ -39,8 +59,13 @@ const CartScreen = () => {
                       />
                       <Link to={`/products/${item.slug}`}>{item.name}</Link>
                     </Col>
+                    <Col md={3} style={{ fontWeight: "bold" }}>
+                      {" "}
+                      Price: $ {item.price}
+                    </Col>
                     <Col md={3}>
                       <Button
+                        onClick={() => updateCartHandler(item, item.quantity - 1)}
                         style={{ background: "white" }}
                         variant="light"
                         disabled={item.quantity === 1}
@@ -50,6 +75,7 @@ const CartScreen = () => {
                       </Button>
                       <span style={{ fontWeight: "bold" }}>{item.quantity}</span>{" "}
                       <Button
+                        onClick={() => updateCartHandler(item, item.quantity + 1)}
                         style={{ background: "white" }}
                         variant="light"
                         disabled={item.quantity === item.countInStock}
@@ -58,12 +84,13 @@ const CartScreen = () => {
                         <i className="fa fa-plus-circle"></i>{" "}
                       </Button>
                     </Col>
-                    <Col md={3} style={{ fontWeight: "bold" }}>
-                      {" "}
-                      Price: $ {item.price}
-                    </Col>
+
                     <Col md={2}>
-                      <Button style={{ background: "white", fontSize: "18px" }} variant="light">
+                      <Button
+                        onClick={() => removeCartItem(item)}
+                        style={{ background: "white", fontSize: "18px", color: "red" }}
+                        variant="light"
+                      >
                         <i className="fa fa-trash"></i>{" "}
                       </Button>
                     </Col>
