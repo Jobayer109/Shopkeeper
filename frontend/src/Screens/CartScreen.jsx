@@ -6,11 +6,12 @@ import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MessageBox from "../components/MessageBox";
 import { Store } from "../components/Store";
 
 const CartScreen = () => {
+  const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
     cart: { cartItems },
@@ -34,6 +35,11 @@ const CartScreen = () => {
     ctxDispatch({ type: "REMOVE_CART_ITEM", payload: item });
   };
 
+  //  Handle checkout
+  const handleCheckout = () => {
+    navigate(`/signIn?redirect=/shipping`);
+  };
+
   return (
     <div className="container">
       <Helmet>
@@ -51,7 +57,7 @@ const CartScreen = () => {
               {cartItems.map((item) => (
                 <ListGroup.Item key={item._id}>
                   <Row className="align-items-center">
-                    <Col md={4}>
+                    <Col md={5}>
                       <img
                         src={item.image}
                         alt={item.name}
@@ -85,7 +91,7 @@ const CartScreen = () => {
                       </Button>
                     </Col>
 
-                    <Col md={2}>
+                    <Col md={1}>
                       <Button
                         onClick={() => removeCartItem(item)}
                         style={{ background: "white", fontSize: "18px", color: "red" }}
@@ -113,6 +119,7 @@ const CartScreen = () => {
                 <ListGroup.Item>
                   <div className="d-grid">
                     <Button
+                      onClick={handleCheckout}
                       style={{ fontSize: "16px" }}
                       variant="secondary"
                       type="button"
