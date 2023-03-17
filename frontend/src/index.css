@@ -158,3 +158,12 @@ footer {
   /* margin-left: 100px;
   margin-right: 100px; */
 }
+
+.small-container{
+  max-width: 500px;
+  
+}
+
+.small-container Form.Control{
+  padding: 12px;
+}

@@ -39,7 +39,7 @@ const Product = (props) => {
         <div className="product__action">
           <p> $ {product.price}</p>
           {product.countInStock === 0 ? (
-            <Button variant="danger" disabled>
+            <Button variant="light" disabled>
               Out of Stock
             </Button>
           ) : (

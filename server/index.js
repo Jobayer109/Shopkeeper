@@ -1,8 +1,11 @@
 import cors from "cors";
+import envConfig from "dotenv";
 import express from "express";
+import dbConnect from "./config/db.js";
 import data from "./data.js";
 const app = express();
 const port = process.env.PORT || 5000;
+envConfig.config();
 
 // Middleware
 app.use(cors());
@@ -32,6 +35,17 @@ app.get("/api/products/:id", (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
+// Server start
+
+const serverRun = async () => {
+  try {
+    await dbConnect(process.env.MONGO_URI);
+    app.listen(port, () => {
+      console.log(`Server is running at http://localhost:${port}`);
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+serverRun();
