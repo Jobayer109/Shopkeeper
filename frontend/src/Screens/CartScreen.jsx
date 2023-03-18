@@ -65,7 +65,7 @@ const CartScreen = () => {
                       />
                       <Link to={`/products/${item.slug}`}>{item.name}</Link>
                     </Col>
-                    <Col md={3} style={{ fontWeight: "bold" }}>
+                    <Col md={3} style={{ fontWeight: "normal" }}>
                       {" "}
                       Price: $ {item.price}
                     </Col>
@@ -77,9 +77,9 @@ const CartScreen = () => {
                         disabled={item.quantity === 1}
                       >
                         {" "}
-                        <i className="fa fa-minus-circle"></i>{" "}
+                        <i className="fa fa-minus-circle" style={{ color: "gray" }}></i>{" "}
                       </Button>
-                      <span style={{ fontWeight: "bold" }}>{item.quantity}</span>{" "}
+                      <span style={{ fontWeight: "normal" }}>{item.quantity}</span>{" "}
                       <Button
                         onClick={() => updateCartHandler(item, item.quantity + 1)}
                         style={{ background: "white" }}
@@ -87,7 +87,7 @@ const CartScreen = () => {
                         disabled={item.quantity === item.countInStock}
                       >
                         {" "}
-                        <i className="fa fa-plus-circle"></i>{" "}
+                        <i className="fa fa-plus-circle" style={{ color: "gray" }}></i>{" "}
                       </Button>
                     </Col>
 

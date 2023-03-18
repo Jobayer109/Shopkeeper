@@ -1,7 +1,6 @@
 const data = {
   products: [
     {
-      _id: "1",
       name: "Puma jeans pant",
       slug: "puma-jeans-pant",
       category: "Pant",
@@ -14,7 +13,6 @@ const data = {
       description: "This is high quality jeans pant",
     },
     {
-      _id: "2",
       name: "Puma Gabardine pant",
       slug: "puma-gabardine-pant",
       category: "Pant",
@@ -27,7 +25,6 @@ const data = {
       description: "This is high quality gabardine pant",
     },
     {
-      _id: "3",
       name: "Adidas Formal Shirt",
       category: "Shirt",
       image: "https://static-01.daraz.com.bd/p/5556e3915dce8030a324c0b32af45384.jpg",
@@ -40,7 +37,6 @@ const data = {
       description: "This is high quality formal shirt",
     },
     {
-      _id: "4",
       name: "Adidas Casual Shirt",
       category: "Shirt",
       image: "https://static-01.daraz.com.bd/p/bd50c44d49d6f5c0f6815178318456ae.jpg",
@@ -53,7 +49,6 @@ const data = {
       description: "This is high quality casual shirt",
     },
     {
-      _id: "5",
       name: "Khan Ladies jacket",
       category: "Jacket",
       image: "https://static-01.daraz.com.bd/p/1cde47f86873055f8e53416d9c37ae0a.jpg",
@@ -66,7 +61,6 @@ const data = {
       description: "This is high quality ladies jacket",
     },
     {
-      _id: "6",
       name: "Khan Mens jacket",
       category: "Jacket",
       image: "https://static-01.daraz.com.bd/p/91ef91080bf3546e956c0b3e8b2e5c82.jpg",

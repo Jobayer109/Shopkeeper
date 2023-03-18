@@ -3,6 +3,7 @@ import envConfig from "dotenv";
 import express from "express";
 import dbConnect from "./config/db.js";
 import data from "./data.js";
+import Product from "./models/product.model.js";
 const app = express();
 const port = process.env.PORT || 5000;
 envConfig.config();
@@ -10,14 +11,21 @@ envConfig.config();
 // Middleware
 app.use(cors());
 
-// Get all products
-app.get("/api/products", (req, res) => {
-  res.send(data.products);
+// Routes
+app.get("/api/seed", async (req, res) => {
+  await Product.deleteMany({});
+  const createdProducts = await Product.insertMany(data.products);
+  res.send({ createdProducts });
+});
+
+app.get("/api/products", async (req, res) => {
+  const products = await Product.find();
+  res.send(products);
 });
 
 //Get single product
-app.get("/api/products/slug/:slug", (req, res) => {
-  const product = data.products.find((x) => x.slug === req.params.slug);
+app.get("/api/products/slug/:slug", async (req, res) => {
+  const product = await Product.findOne({ slug: req.params.slug });
   if (product) {
     res.status(200).send(product);
   } else {
@@ -26,8 +34,8 @@ app.get("/api/products/slug/:slug", (req, res) => {
 });
 
 //Get single product
-app.get("/api/products/:id", (req, res) => {
-  const product = data.products.find((x) => x._id === req.params.id);
+app.get("/api/products/:id", async (req, res) => {
+  const product = await Product.findById(req.params.id);
   if (product) {
     res.status(200).send(product);
   } else {

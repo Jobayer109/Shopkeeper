@@ -10,7 +10,7 @@ import SignInScreen from "./Screens/SignInScreen";
 function App() {
   const { state } = useContext(Store);
   const { cart } = state;
-  console.log(cart);
+
   return (
     <BrowserRouter>
       <div className="main__container">
