@@ -4,6 +4,7 @@ import express from "express";
 import dbConnect from "./config/db.js";
 import data from "./data.js";
 import Product from "./models/product.model.js";
+import User from "./models/userModel.js";
 const app = express();
 const port = process.env.PORT || 5000;
 envConfig.config();
@@ -15,7 +16,10 @@ app.use(cors());
 app.get("/api/seed", async (req, res) => {
   await Product.deleteMany({});
   const createdProducts = await Product.insertMany(data.products);
-  res.send({ createdProducts });
+
+  await User.deleteMany({});
+  const createdUsers = await User.insertMany(data.users);
+  res.send({ createdProducts, createdUsers });
 });
 
 app.get("/api/products", async (req, res) => {
