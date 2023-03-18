@@ -1,16 +1,21 @@
+import bcrypt from "bcryptjs";
 import cors from "cors";
 import envConfig from "dotenv";
 import express from "express";
+import expressAsyncHandle from "express-async-handler";
 import dbConnect from "./config/db.js";
 import data from "./data.js";
 import Product from "./models/product.model.js";
 import User from "./models/userModel.js";
+import generateToken from "./utils.js";
 const app = express();
 const port = process.env.PORT || 5000;
 envConfig.config();
 
 // Middleware
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.get("/api/seed", async (req, res) => {
@@ -47,8 +52,34 @@ app.get("/api/products/:id", async (req, res) => {
   }
 });
 
-// Server start
+// User sign in
+app.post(
+  "/api/user/signIn",
+  expressAsyncHandle(async (req, res) => {
+    const user = await User.findOne({ email: req.body.email });
+    console.log(user);
+    if (user) {
+      if (bcrypt.compareSync(req.body.password, user.password)) {
+        res.send({
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          isAdmin: user.isAdmin,
+          token: generateToken(user),
+        });
+        return;
+      }
+    }
+    res.status(401).send({ message: "Invalid email or password" });
+  })
+);
 
+// Server Error Handling
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: err.message });
+});
+
+// Server start
 const serverRun = async () => {
   try {
     await dbConnect(process.env.MONGO_URI);
