@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import { Helmet } from "react-helmet-async";
@@ -15,7 +15,7 @@ const SignInScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { state: userInfo, dispatch: ctxDispatch } = useContext(Store);
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
@@ -30,6 +30,12 @@ const SignInScreen = () => {
       alert("Invalid email or password");
     }
   };
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect);
+    }
+  }, [navigate, userInfo, redirect]);
 
   return (
     <Container className="small-container">
