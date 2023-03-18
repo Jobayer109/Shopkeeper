@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Helmet } from "react-helmet-async";
+import { useNavigate } from "react-router-dom";
+import { Store } from "../components/Store";
 
 const ShippingAddressScreen = () => {
+  const navigate = useNavigate();
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+
   const [fullName, setFullName] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -11,13 +16,29 @@ const ShippingAddressScreen = () => {
 
   const shippingAddressHandler = (e) => {
     e.preventDefault();
+    ctxDispatch({
+      type: "SAVE_SHIPPING_ADDRESS",
+      payload: {
+        fullName,
+        address,
+        city,
+        postalCode,
+        country,
+      },
+    });
+    localStorage.setItem(
+      "shippingAddress",
+      JSON.stringify({ fullName, address, city, postalCode, country })
+    );
+    navigate("/payment");
   };
 
   return (
-    <div>
+    <div style={{ paddingLeft: "30%", paddingRight: "30%" }}>
       <Helmet>
         <title>Shipping Address</title>
       </Helmet>
+
       <h1 className="my-3 fw-bold">Shipping Address</h1>
       <Form onSubmit={shippingAddressHandler}>
         <Form.Group className="mb-3 " controlId="fullName">
