@@ -37,6 +37,18 @@ header a {
 header a:hover {
   color: #11b911;
 }
+
+.header__right {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  color: #08e83d;
+}
+
+.dropDown {
+  font-size: 14px;
+}
+
 main {
   flex: 1;
   padding: 2rem;
@@ -106,7 +118,6 @@ footer {
   padding: 1rem;
 }
 
-
 .center span {
   font-weight: bold;
   color: #11b911;
@@ -150,20 +161,19 @@ footer {
   margin-left: auto 0;
 }
 
-.img-thumbnail{
+.img-thumbnail {
   height: 80px;
 }
 
-.cart__component{
+.cart__component {
   /* margin-left: 100px;
   margin-right: 100px; */
 }
 
-.small-container{
+.small-container {
   max-width: 500px;
-  
 }
 
-.small-container Form.Control{
+.small-container Form.Control {
   padding: 12px;
 }

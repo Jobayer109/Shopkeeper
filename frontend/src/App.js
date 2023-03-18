@@ -7,6 +7,7 @@ import { Store } from "./components/Store";
 import CartScreen from "./Screens/CartScreen";
 import HomeScreen from "./Screens/HomeScreen";
 import ProductScreen from "./Screens/ProductScreen";
+import ShippingAddressScreen from "./Screens/ShippingAddressScreen";
 import SignInScreen from "./Screens/SignInScreen";
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -30,31 +31,35 @@ function App() {
               />
             </Link>
           </div>
-          <div>
-            <Link to="/cart">
-              Cart
-              {cart.cartItems.length > 0 && (
-                <Badge pill bg="danger">
-                  {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
-                </Badge>
+          <div className="header__right">
+            <div>
+              <Link to="/cart">
+                Cart
+                {cart.cartItems.length > 0 && (
+                  <Badge pill bg="danger">
+                    {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                  </Badge>
+                )}
+              </Link>
+            </div>
+            <div>
+              {userInfo ? (
+                <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
+                  <LinkContainer to="/profile">
+                    <NavDropdown.Item className="dropDown">User Profile</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/orderHistory">
+                    <NavDropdown.Item className="dropDown">Order History</NavDropdown.Item>
+                  </LinkContainer>
+                  <NavDropdown.Divider />
+                  <Link to="#signOut" className="dropdown-item dropDown" onClick={signOutHandler}>
+                    Sign Out
+                  </Link>
+                </NavDropdown>
+              ) : (
+                <Link to="/signIn">Sign In</Link>
               )}
-            </Link>
-            {userInfo ? (
-              <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
-                <LinkContainer to="/profile">
-                  <NavDropdown.Item>User Profile</NavDropdown.Item>
-                </LinkContainer>
-                <LinkContainer to="/orderHistory">
-                  <NavDropdown.Item>Order History</NavDropdown.Item>
-                </LinkContainer>
-                <NavDropdown.Divider />
-                <Link to="#signOut" className="dropdown-item" onClick={signOutHandler}>
-                  Sign Out
-                </Link>
-              </NavDropdown>
-            ) : (
-              <Link to="/signIn">Sign In</Link>
-            )}
+            </div>
           </div>
         </header>
         <main>
@@ -62,6 +67,7 @@ function App() {
             <Route path="/" element={<HomeScreen />} />
             <Route path="/cart" element={<CartScreen />} />
             <Route path="/signIn" element={<SignInScreen />} />
+            <Route path="/shipping" element={<ShippingAddressScreen />} />
             <Route path="/product/:slug" element={<ProductScreen />} />
           </Routes>
         </main>
