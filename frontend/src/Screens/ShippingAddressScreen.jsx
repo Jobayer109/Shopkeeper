@@ -45,65 +45,69 @@ const ShippingAddressScreen = () => {
   };
 
   return (
-    <div style={{ paddingLeft: "30%", paddingRight: "30%" }}>
+    <div>
       <Helmet>
         <title>Shipping Address</title>
       </Helmet>
-      <CheckoutSteps step1 step2 />
-      <h1 className="my-3 fw-bold">Shipping Address</h1>
-      <Form onSubmit={shippingAddressHandler}>
-        <Form.Group className="mb-3 " controlId="fullName">
-          <Form.Label>Full Name</Form.Label>
-          <Form.Control
-            className="fs-3"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3 " controlId="address">
-          <Form.Label>Address</Form.Label>
-          <Form.Control
-            className="fs-3"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3 " controlId="city">
-          <Form.Label>City</Form.Label>
-          <Form.Control
-            className="fs-3"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3 " controlId="postalCode">
-          <Form.Label>Postal Code</Form.Label>
-          <Form.Control
-            className="fs-3"
-            value={postalCode}
-            onChange={(e) => setPostalCode(e.target.value)}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3 " controlId="country">
-          <Form.Label>Country</Form.Label>
-          <Form.Control
-            className="fs-3"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            required
-          />
-        </Form.Group>
+      <div style={{ paddingLeft: "10%", paddingRight: "10%", marginBottom: "30px" }}>
+        <CheckoutSteps step1 step2 />
+      </div>
+      <div style={{ paddingLeft: "30%", paddingRight: "30%" }}>
+        <h1 className="my-3 fw-bold">Shipping Address</h1>
+        <Form onSubmit={shippingAddressHandler}>
+          <Form.Group className="mb-3 " controlId="fullName">
+            <Form.Label>Full Name</Form.Label>
+            <Form.Control
+              className="fs-3"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3 " controlId="address">
+            <Form.Label>Address</Form.Label>
+            <Form.Control
+              className="fs-3"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3 " controlId="city">
+            <Form.Label>City</Form.Label>
+            <Form.Control
+              className="fs-3"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3 " controlId="postalCode">
+            <Form.Label>Postal Code</Form.Label>
+            <Form.Control
+              className="fs-3"
+              value={postalCode}
+              onChange={(e) => setPostalCode(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3 " controlId="country">
+            <Form.Label>Country</Form.Label>
+            <Form.Control
+              className="fs-3"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              required
+            />
+          </Form.Group>
 
-        <div className="mb-3">
-          <button style={{ paddingLeft: "20px", paddingRight: "20px" }} type="submit">
-            Continue
-          </button>
-        </div>
-      </Form>
+          <div className="mb-3">
+            <button style={{ paddingLeft: "20px", paddingRight: "20px" }} type="submit">
+              Continue
+            </button>
+          </div>
+        </Form>
+      </div>
     </div>
   );
 };

@@ -180,6 +180,7 @@ footer {
 }
 
 .checkout-steps > div.active{
-  border-bottom: 0.2rem solid #11b911;
-  color: #11b911;
+  border-bottom: 0.2rem solid #04ca04;
+  color: #04ca04;
+  font-weight: bold;
 }

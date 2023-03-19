@@ -74,6 +74,26 @@ app.post(
   })
 );
 
+// Sign up
+app.post(
+  "/api/user/signUp",
+  expressAsyncHandle(async (req, res) => {
+    const newUser = new User({
+      name: req.body.name,
+      email: req.body.email,
+      password: bcrypt.hashSync(req.body.password),
+    });
+    const user = await newUser.save();
+    res.send({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      token: generateToken(user),
+    });
+  })
+);
+
 // Server Error Handling
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
