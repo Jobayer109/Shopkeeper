@@ -1,18 +1,29 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
+import CheckoutSteps from "../components/CheckoutSteps";
 import { Store } from "../components/Store";
 
 const ShippingAddressScreen = () => {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
+  const {
+    userInfo,
+    cart: { shippingAddress },
+  } = state;
 
-  const [fullName, setFullName] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [country, setCountry] = useState("");
+  const [fullName, setFullName] = useState(shippingAddress.fullName || "");
+  const [address, setAddress] = useState(shippingAddress.address || "");
+  const [city, setCity] = useState(shippingAddress.city || "");
+  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode || "");
+  const [country, setCountry] = useState(shippingAddress.country || "");
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate("/signIn?redirect=/shipping");
+    }
+  }, [userInfo, navigate]);
 
   const shippingAddressHandler = (e) => {
     e.preventDefault();
@@ -38,7 +49,7 @@ const ShippingAddressScreen = () => {
       <Helmet>
         <title>Shipping Address</title>
       </Helmet>
-
+      <CheckoutSteps step1 step2 />
       <h1 className="my-3 fw-bold">Shipping Address</h1>
       <Form onSubmit={shippingAddressHandler}>
         <Form.Group className="mb-3 " controlId="fullName">
