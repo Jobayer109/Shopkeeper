@@ -7,6 +7,7 @@ import { Store } from "./components/Store";
 import CartScreen from "./Screens/CartScreen";
 import HomeScreen from "./Screens/HomeScreen";
 import PaymentMethodScreen from "./Screens/PaymentMethodScreen";
+import PlaceOrderScreen from "./Screens/PlaceOrderScreen";
 import ProductScreen from "./Screens/ProductScreen";
 import ShippingAddressScreen from "./Screens/ShippingAddressScreen";
 import SignInScreen from "./Screens/SignInScreen";
@@ -73,6 +74,7 @@ function App() {
             <Route path="/signUp" element={<SignUpScreen />} />
             <Route path="/shipping" element={<ShippingAddressScreen />} />
             <Route path="/payment" element={<PaymentMethodScreen />} />
+            <Route path="/placeOrder" element={<PlaceOrderScreen />} />
             <Route path="/product/:slug" element={<ProductScreen />} />
           </Routes>
         </main>
