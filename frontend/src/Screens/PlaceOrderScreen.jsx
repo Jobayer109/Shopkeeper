@@ -64,7 +64,7 @@ const PlaceOrderScreen = () => {
       ctxDispatch({ type: "CART_CLEAR" });
       dispatch({ type: "CREATE_SUCCESS" });
       localStorage.removeItem("cartItems");
-      navigate(`/order/${data.order._id}`);
+      navigate(`/orders/${data.order._id}`);
     } catch (error) {
       dispatch({ type: "CREATE_FAIL" });
       alert(getError(error));

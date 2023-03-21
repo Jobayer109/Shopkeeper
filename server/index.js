@@ -117,6 +117,20 @@ app.post(
   })
 );
 
+// Single order
+app.get(
+  "/orders/:id",
+  isAuth,
+  expressAsyncHandle(async (req, res) => {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+      res.status(201).send(order);
+    } else {
+      res.status(401).send({ message: "Order not found" });
+    }
+  })
+);
+
 // Server Error Handling
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });

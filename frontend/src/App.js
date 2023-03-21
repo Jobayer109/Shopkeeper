@@ -6,6 +6,7 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { Store } from "./components/Store";
 import CartScreen from "./Screens/CartScreen";
 import HomeScreen from "./Screens/HomeScreen";
+import OrderScreen from "./Screens/OrderScreen";
 import PaymentMethodScreen from "./Screens/PaymentMethodScreen";
 import PlaceOrderScreen from "./Screens/PlaceOrderScreen";
 import ProductScreen from "./Screens/ProductScreen";
@@ -69,13 +70,14 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<HomeScreen />} />
+            <Route path="/product/:slug" element={<ProductScreen />} />
             <Route path="/cart" element={<CartScreen />} />
             <Route path="/signIn" element={<SignInScreen />} />
             <Route path="/signUp" element={<SignUpScreen />} />
             <Route path="/shipping" element={<ShippingAddressScreen />} />
             <Route path="/payment" element={<PaymentMethodScreen />} />
             <Route path="/placeOrder" element={<PlaceOrderScreen />} />
-            <Route path="/product/:slug" element={<ProductScreen />} />
+            <Route path="/orders/:id" element={<OrderScreen />} />
           </Routes>
         </main>
         <footer className="center">
