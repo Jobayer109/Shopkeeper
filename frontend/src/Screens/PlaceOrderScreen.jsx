@@ -9,14 +9,15 @@ import { Link, useNavigate } from "react-router-dom";
 import CheckoutSteps from "../components/CheckoutSteps";
 import LoadingBox from "../components/LoadingBox";
 import { Store } from "../components/Store";
+import getError from "../utils";
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "Create_Request":
+    case "CREATE_REQUEST":
       return { ...state, loading: true };
-    case "Create_Success":
+    case "CREATE_SUCCESS":
       return { ...state, loading: false };
-    case "Create_Fail":
+    case "CREATE_FAIL":
       return { ...state, loading: false };
     default:
       return state;
@@ -42,7 +43,7 @@ const PlaceOrderScreen = () => {
   // Place order
   const placeOrderHandler = async () => {
     try {
-      dispatch({ type: "Create_Request" });
+      dispatch({ type: "CREATE_REQUEST" });
       const { data } = await axios.post(
         "/api/orders",
         {
@@ -56,17 +57,17 @@ const PlaceOrderScreen = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${userInfo.token}`,
+            authorization: `Bearer ${userInfo.token}`,
           },
         }
       );
       ctxDispatch({ type: "CART_CLEAR" });
-      dispatch({ type: "Create_Success" });
+      dispatch({ type: "CREATE_SUCCESS" });
       localStorage.removeItem("cartItems");
       navigate(`/order/${data.order._id}`);
     } catch (error) {
-      dispatch({ type: "Create_Fail" });
-      alert(error.message);
+      dispatch({ type: "CREATE_FAIL" });
+      alert(getError(error));
     }
   };
 
@@ -175,7 +176,10 @@ const PlaceOrderScreen = () => {
                         Place Order
                       </button>
                     </div>
-                    {loading && <LoadingBox></LoadingBox>}
+                    <div style={{ marginLeft: "120px" }}>
+                      {" "}
+                      {loading && <LoadingBox></LoadingBox>}
+                    </div>
                   </ListGroup.Item>
                 </ListGroup>
               </Card.Body>

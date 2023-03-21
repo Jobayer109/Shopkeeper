@@ -5,9 +5,10 @@ import express from "express";
 import expressAsyncHandle from "express-async-handler";
 import dbConnect from "./config/db.js";
 import data from "./data.js";
+import Order from "./models/orderModel.js";
 import Product from "./models/product.model.js";
 import User from "./models/userModel.js";
-import generateToken from "./utils.js";
+import { generateToken, isAuth } from "./utils.js";
 const app = express();
 const port = process.env.PORT || 5000;
 envConfig.config();
@@ -91,6 +92,28 @@ app.post(
       isAdmin: user.isAdmin,
       token: generateToken(user),
     });
+  })
+);
+
+// Order api
+
+app.post(
+  "/api/orders",
+  isAuth,
+  expressAsyncHandle(async (req, res) => {
+    const newOrder = new Order({
+      orderItems: req.body.orderItems.map((x) => ({ ...x, product: x._id })),
+      shippingAddress: req.body.shippingAddress,
+      paymentMethod: req.body.paymentMethod,
+      itemsPrice: req.body.itemsPrice,
+      shippingPrice: req.body.shippingPrice,
+      taxPrice: req.body.taxPrice,
+      totalPrice: req.body.totalPrice,
+      user: req.user._id,
+    });
+
+    const order = await newOrder.save();
+    res.status(201).send({ message: "New order created", order });
   })
 );
 
